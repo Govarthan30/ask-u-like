@@ -19,7 +19,7 @@ const Dashboard = () => {
   const createRoom = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:4000/api/room/create",
+        "https://ask-u-like.onrender.com/api/room/create",
         { title: "My Room" },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -37,7 +37,7 @@ const Dashboard = () => {
     try {
       // Validate room from backend
       await axios.post(
-        `http://localhost:4000/api/room/${roomCode}/join`,
+        `https://ask-u-like.onrender.com/api/room/${roomCode}/join`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
