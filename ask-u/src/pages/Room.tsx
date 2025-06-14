@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import io from "socket.io-client";
 
-const socket = io("http://localhost:4000"); // Replace with your backend URL
+const socket = io("https://ask-u-like.onrender.com"); // Replace with your backend URL
 
 const Room = () => {
   const { code } = useParams();
@@ -18,7 +18,7 @@ const Room = () => {
     const fetchRoom = async () => {
       try {
         const res = await axios.post(
-          `http://localhost:4000/api/room/${code}/join`,
+          `https://ask-u-like.onrender.com/api/room/${code}/join`,
           {},
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -53,7 +53,7 @@ const Room = () => {
   const lockRoom = async () => {
     try {
       await axios.post(
-        `http://localhost:4000/api/room/${code}/lock`,
+        `https://ask-u-like.onrender.com/api/room/${code}/lock`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
