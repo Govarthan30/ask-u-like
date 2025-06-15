@@ -14,13 +14,13 @@ dotenv.config();
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
-  cors: { origin: "http://localhost:5173", credentials: true }
+  cors: { origin: "https://ask-u-like-gova.onrender.com/", credentials: true }
 });
 
 const PORT = process.env.PORT || 4000;
 
 // Middleware
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(cors({ origin: "https://ask-u-like-gova.onrender.com/", credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(session({
@@ -53,7 +53,7 @@ const Message = mongoose.model("Message", messageSchema);
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: "http://localhost:4000/api/auth/google/callback"
+  callbackURL: "https://ask-u-like.onrender.com/api/auth/google/callback"
 }, (accessToken, refreshToken, profile, done) => {
   return done(null, profile);
 }));
@@ -74,7 +74,7 @@ app.get("/api/auth/google/callback",
   passport.authenticate("google", { failureRedirect: "/" }),
   (req, res) => {
     const token = jwt.sign({ id: req.user.id }, process.env.JWT_SECRET, { expiresIn: "1h" });
-    res.redirect(`http://localhost:5173/dashboard?token=${token}`);
+    res.redirect(`https://ask-u-like-gova.onrender.com//dashboard?token=${token}`);
   }
 );
 
